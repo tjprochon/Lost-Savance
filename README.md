@@ -1,2 +1,2 @@
 # Lost-Savance
-For the Development of the 'Lost Savance' game
+A 2D RPG game in early development.
