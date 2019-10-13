@@ -9,6 +9,9 @@ display_width = 900
 display_height = 650
 
 black = (0,0,0)
+gray1 = (15,15,15)
+gray2 = (30,30,30)
+gray3 = (45,45,45)
 white = (255,255,255)
 red = (255,0,0)
 green = (0,255,0)
@@ -327,16 +330,48 @@ escSelect3 = pygame.image.load("Assets/Art/EscapeExit.png")
 selection = pygame.image.load("Assets/Toolbar/selection.png")
 heart = pygame.image.load("Assets/Toolbar/heart.png")
 
-mob1 = pygame.image.load("Assets/Entities/Mob/slime.png")
-mob1Hurt = pygame.image.load("Assets/Entities/Mob/slimeHurt.png")
+slime = pygame.image.load("Assets/Entities/Mob/slime.png")
+slimeHurt = pygame.image.load("Assets/Entities/Mob/slimeHurt.png")
 
-mob2 = pygame.image.load("Assets/Entities/Mob/skeleton.png")
-mob2Hurt = pygame.image.load("Assets/Entities/Mob/skeletonHurt.png")
+skeleton = pygame.image.load("Assets/Entities/Mob/skeleton.png")
+skeletonHurt = pygame.image.load("Assets/Entities/Mob/skeletonHurt.png")
 
 
 #
 #============================= Main Game Loop =============================#
 #
+def transition():
+    global heroMotion
+    global movclock
+    heroMotion = False
+    movclock = 0
+    Tran = True
+    counterT = 0
+    while Tran:
+        counterT += 1
+        if counterT >= 1 and counterT <= 5:
+            gameDisplay.fill(gray3)
+            
+        if counterT >= 6 and counterT <= 10:
+            gameDisplay.fill(gray2)
+            
+        if counterT >= 11 and counterT <= 15:
+            gameDisplay.fill(gray1)
+            
+        if counterT >= 16 and counterT <= 130:
+            gameDisplay.fill(black)
+            
+        if counterT >= 131 and counterT <= 145:
+            gameDisplay.fill(gray1)
+            
+        if counterT >= 146 and counterT <= 150:
+            gameDisplay.fill(gray2)
+            
+        if counterT >= 151 and counterT <= 165:
+            gameDisplay.fill(gray3)
+            Tran = False
+            
+        pygame.display.update()
 
 def Menu():
     global level
@@ -404,13 +439,13 @@ def heroHurt():
     
 
 def mob1hurt():
-    gameDisplay.blit(mob1Hurt, (mob1X, (mob1Y - 7)))
+    gameDisplay.blit(slimeHurt, (mob1X, (mob1Y - 7)))
     randomChoice = (random.choice(random10))
     pygame.display.update()
     time.sleep(0.3)
 
 def mob2hurt():
-    gameDisplay.blit(mob2Hurt, (mob2X, (mob2Y - 9)))
+    gameDisplay.blit(skeletonHurt, (mob2X, (mob2Y - 9)))
     randomChoice = (random.choice(random10))
     pygame.display.update()
     time.sleep(0.3)
@@ -535,9 +570,195 @@ def lives():
 
 def resetEntities():
     global coin1
+    global coin2
+    global coin3
+    global coin4
+    global coin5
+    global coin6
+    global coin7
+    global coin8
+    global coin9
+    global coin10
+    
     global rock1
+    global rock2
+    global rock3
+    global rock4
+    global rock5
+    global rock6
+    global rock7
+    global rock8
+    global rock9
+    global rock10
+    
     global mob1
+    global mob2
+    global mob3
+    global mob4
+    global mob5
+    global mob6
+    global mob7
+    global mob8
+    global mob9
+    global mob10
 
+    global potion1
+    global potion2
+    global potion3
+    global potion4
+    global potion5
+
+    global mob1X
+    global mob1Y
+    global mob1HP
+    global mob1
+    global MobAttack1
+    
+    global mob2X
+    global mob2Y
+    global mob2HP
+    global mob2
+    global MobAttack2
+
+    global mob3X
+    global mob3Y
+    global mob3HP
+    global mob3
+    global MobAttack3
+
+    global mob4X
+    global mob4Y
+    global mob4HP
+    global mob4
+    global MobAttack4
+
+    global mob5X
+    global mob5Y
+    global mob5HP
+    global mob5
+    global MobAttack5
+
+    global mob6X
+    global mob6Y
+    global mob6HP
+    global mob6
+    global MobAttack6
+
+    global mob7X
+    global mob7Y
+    global mob7HP
+    global mob7
+    global MobAttack7
+
+    global mob8X
+    global mob8Y
+    global mob8HP
+    global mob8
+    global MobAttack8
+
+    global mob9X
+    global mob9Y
+    global mob9HP
+    global mob9
+    global MobAttack9
+
+    global mob10X
+    global mob10Y
+    global mob10HP
+    global mob10
+    global MobAttack10
+    
+    coin1 = False
+    coin2 = False
+    coin3 = False
+    coin4 = False
+    coin5 = False
+    coin6 = False
+    coin7 = False
+    coin8 = False
+    coin9 = False
+    coin10 = False
+    
+    rock1 = False
+    rock2 = False
+    rock3 = False
+    rock4 = False
+    rock5 = False
+    rock6 = False
+    rock7 = False
+    rock8 = False
+    rock9 = False
+    rock10 = False
+
+    potion1 = False
+    potion2 = False
+    potion3 = False
+    potion4 = False
+    potion5 = False
+
+    mob1X = 0
+    mob1Y = 0
+    mob1HP = 0
+    mob1 = False
+    MobAttack1 = 0
+    
+    mob2X = 0
+    mob2Y = 0
+    mob2HP = 0
+    mob2 = False
+    MobAttack2 = 0
+
+    mob3X = 0
+    mob3Y = 0
+    mob3HP = 0
+    mob3 = False
+    MobAttack3 = 0
+
+    mob4X = 0
+    mob4Y = 0
+    mob4HP = 0
+    mob4 = False
+    MobAttack4 = 0
+
+    mob5X = 0
+    mob5Y = 0
+    mob5HP = 0
+    mob5 = False
+    MobAttack5 = 0
+
+    mob6X = 0
+    mob6Y = 0
+    mob6HP = 0
+    mob6 = False
+    MobAttack6 = 0
+
+    mob7X = 0
+    mob7Y = 0
+    mob7HP = 0
+    mob7 = False
+    MobAttack7 = 0
+
+    mob8X = 0
+    mob8Y = 0
+    mob8HP = 0
+    mob8 = False
+    MobAttack8 = 0
+
+    mob9X = 0
+    mob9Y = 0
+    mob9HP = 0
+    mob9 = False
+    MobAttack9 = 0
+
+    mob10X = 0
+    mob10Y = 0
+    mob10HP = 0
+    mob10 = False
+    MobAttack10 = 0
+    
+    shopX = 0
+    shopY = 0
+    
 def displayL0S1():
     #bushs
     gameDisplay.blit(bush, ((chunk*6), (chunk*1 - 8)))
@@ -722,6 +943,7 @@ def display():
                 if frame == 2:
                     heroIMG = pygame.image.load("Assets/Entities/Hero/Animations/heroLH2.png")
         if select == 2:
+            gameDisplay.blit(selection, (73, 528))
             if heroHit:
                 heroIMG = pygame.image.load("Assets/Entities/Hero/heroLSHurt.png")
             else:
@@ -732,6 +954,7 @@ def display():
                 if frame == 2:
                     heroIMG = pygame.image.load("Assets/Entities/Hero/Animations/heroLS2.png")
         if select == 3:
+            gameDisplay.blit(selection, (126, 528))
             if heroHit:
                 heroIMG = pygame.image.load("Assets/Entities/Hero/heroLPHurt.png")
             else:
@@ -850,35 +1073,35 @@ def display():
     gameDisplay.blit(heroIMG, (heroX, (heroY - 9)))    
     
     #mob1 1
-    if mob1HP > 0:
-        gameDisplay.blit(mob1, (mob1X, (mob1Y - 8)))
+    if mob1HP > 0 and mob1 == True:
+        gameDisplay.blit(slime, (mob1X, (mob1Y - 8)))
     
-    if mob2HP > 0:
-        gameDisplay.blit(mob2, (mob2X, (mob2Y - 8)))
+    if mob2HP > 0 and mob2 == True:
+        gameDisplay.blit(skeleton, (mob2X, (mob2Y - 8)))
 
-    if mob3HP > 0:
-        gameDisplay.blit(mob2, (mob3X, (mob3Y - 8)))
+    if mob3HP > 0 and mob3 == True:
+        gameDisplay.blit(skeleton, (mob3X, (mob3Y - 8)))
 
-    if mob4HP > 0:
-        gameDisplay.blit(mob2, (mob4X, (mob4Y - 8)))
+    if mob4HP > 0 and mob4 == True:
+        gameDisplay.blit(skeleton, (mob4X, (mob4Y - 8)))
 
-    if mob5HP > 0:
-        gameDisplay.blit(mob2, (mob5X, (mob5Y - 8)))
+    if mob5HP > 0 and mob5 == True:
+        gameDisplay.blit(skeleton, (mob5X, (mob5Y - 8)))
 
-    if mob6HP > 0:
-        gameDisplay.blit(mob2, (mob6X, (mob6Y - 8)))
+    if mob6HP > 0 and mob6 == True:
+        gameDisplay.blit(skeleton, (mob6X, (mob6Y - 8)))
 
-    if mob7HP > 0:
-        gameDisplay.blit(mob2, (mob7X, (mob7Y - 8)))
+    if mob7HP > 0 and mob7 == True:
+        gameDisplay.blit(skeleton, (mob7X, (mob7Y - 8)))
 
-    if mob8HP > 0:
-        gameDisplay.blit(mob2, (mob8X, (mob8Y - 8)))
+    if mob8HP > 0 and mob8 == True:
+        gameDisplay.blit(skeleton, (mob8X, (mob8Y - 8)))
 
-    if mob9HP > 0:
-        gameDisplay.blit(mob2, (mob9X, (mob9Y - 8)))
+    if mob9HP > 0 and mob9 == True:
+        gameDisplay.blit(skeleton, (mob9X, (mob9Y - 8)))
 
-    if mob10HP > 0:
-        gameDisplay.blit(mob2, (mob10X, (mob10Y - 8)))
+    if mob10HP > 0 and mob10 == True:
+        gameDisplay.blit(skeleton, (mob10X, (mob10Y - 8)))
 
     
     balance_dis()
@@ -1244,9 +1467,13 @@ def L0S1_R(X,Y):
 def L0S1_U(X,Y):
     global blocked
     global level
+    global heroX
+    global heroY
     blocked = False
     if heroX == (chunk*16) and heroY == (chunk*13):
         level = L0S2
+        heroX = (chunk*15)
+        heroY = (chunk*13)
         blocked = True
     else:
         if Y == 225 and X < 125 or Y == 325 and X < 125 and X > 50 or Y == 25:
@@ -2307,31 +2534,40 @@ def runL0S1():
 def L0S2_L(X,Y):
     global blocked
     blocked = False
-    if X < 100:
+    if X == 300:
         blocked = True
     else:
         pass
 def L0S2_R(X,Y):
     global blocked
     blocked = False
-    if X > 250:
+    if X == 575:
         blocked = True
     else:
         pass
 def L0S2_U(X,Y):
     global blocked
     blocked = False
-    if Y < 425:
+    if Y == 175:
         blocked = True
     else:
         pass
 def L0S2_D(X,Y):
+    global level
+    global heroX
+    global heroY
     global blocked
     blocked = False
-    if Y > 750:
+    if heroX == (chunk*15) and heroY == (chunk*13):
+        level = L0S1
+        heroX = (chunk*16)
+        heroY = (chunk*13)
         blocked = True
     else:
-        pass
+        if Y == 325:
+            blocked = True
+        else:
+            pass
     
 def runL0S2():
     global chunk
@@ -2599,13 +2835,11 @@ def runL0S2():
     heroMoveD = False
     heroMoveR = False
     heroMoveU = False
-    
     while level == L0S2:
-        print("level")
         if heroMotion:
             movclock += 1
             if heroMoveL == True:
-                L0S1_L(heroX,heroY)
+                L0S2_L(heroX,heroY)
                 LCol(heroX,heroY)
                 if blocked == False and blocked2 == False:
                     if movclock == 3:
@@ -2627,7 +2861,7 @@ def runL0S2():
                                                                             
 
             if heroMoveR == True:
-                L0S1_R(heroX,heroY)
+                L0S2_R(heroX,heroY)
                 RCol(heroX,heroY)
                 if blocked == False and blocked2 == False:
                     if movclock == 3:
@@ -2647,7 +2881,7 @@ def runL0S2():
                         frame = 0
 
             if heroMoveU == True:
-                L0S1_U(heroX,heroY)
+                L0S2_U(heroX,heroY)
                 UCol(heroX,heroY)
                 if blocked == False and blocked2 == False:
                     if movclock == 3:
@@ -2667,7 +2901,7 @@ def runL0S2():
                         frame = 0
 
             if heroMoveD == True:
-                L0S1_D(heroX,heroY)
+                L0S2_D(heroX,heroY)
                 DCol(heroX,heroY)
                 if blocked == False and blocked2 == False:
                     if movclock == 3:
@@ -2698,32 +2932,30 @@ def runL0S2():
                     
             
         for event in pygame.event.get():
-            print(event)
             if event.type == pygame.QUIT:
                 quit()
             if event.type == pygame.KEYDOWN:
-                print("3")
                 if event.key == pygame.K_a and heroMotion == False: #LEFT
                     view = 1
                     heroMotion = True
                     heroMoving = True
                     heroMoveL = True
-                    
-         
+                        
+             
                 if event.key == pygame.K_d and heroMotion == False: #RIGHT
                     view = 3
                     heroMotion = True
                     heroMoving = True
                     heroMoveR = True
 
-                        
+                            
                 if event.key == pygame.K_w and heroMotion == False: # UP
                     view = 4
                     heroMotion = True
                     heroMoving = True
                     heroMoveU = True
 
-                    
+                        
                 if event.key == pygame.K_s and heroMotion == False: #DOWN
                     view = 2
                     heroMotion = True
@@ -2737,13 +2969,10 @@ def runL0S2():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_KP1 or event.key == pygame.K_1:
                     select = 1
-            if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_KP2 or event.key == pygame.K_2:
                     select = 2
-            if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_KP3 or event.key == pygame.K_3:
                     select = 3
-            if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_r:
                     heal()
             
@@ -2766,9 +2995,12 @@ while running:
         Menu()
 
     if level == L0S1:
+        transition()
         runL0S1()
 
     if level == L0S2:
+        transition()
+        resetEntities()
         runL0S2()
         
 pygame.quit()
